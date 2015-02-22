@@ -1,19 +1,26 @@
-{{textarea value=emblem}}
+<div class="row">
+  <div class="col-md-6">
+    {{textarea value=emblem class="large"}}
+  </div>
 
-{{#emblem-preview emblem=emblem as |compiled loading error|}}
-{{#if loading}}
-  Loading...
-{{/if}}
+  <div class="col-md-6">
+    {{#emblem-preview emblem=emblem as |compiled loading error|}}
+    {{#if loading}}
+      Loading...
+    {{/if}}
 
-{{#if compiled}}
-<pre>
-  {{compiled}}
-</pre>
-{{/if}}
+    {{#if compiled}}
+    <pre>
+      {{compiled}}
+    </pre>
+    {{/if}}
 
-{{#if error}}
-<div class="error">
-  ERROR: {{error}}
+    {{#if error}}
+    <div class="error">
+      ERROR: {{error}}
+    </div>
+    {{/if}}
+    {{/emblem-preview}}
+  </div>
 </div>
-{{/if}}
-{{/emblem-preview}}
+
