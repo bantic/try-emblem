@@ -7,8 +7,8 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
 
-    apiURL: 'http://localhost:8000/api/emblem',
-    //apiURL: 'https://emblem-preview-api.herokuapp.com/api/emblem',
+    //apiURL: 'http://localhost:8000/api/emblem',
+    apiURL: 'https://emblem-preview-api.herokuapp.com/api/emblem',
 
     EmberENV: {
       FEATURES: {
