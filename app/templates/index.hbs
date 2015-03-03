@@ -1,26 +1,38 @@
 <div class="row">
   <div class="col-md-6">
-    {{textarea value=emblem class="large"}}
+    <div class="input">
+      {{textarea value=emblem class="large"}}
+    </div>
   </div>
 
   <div class="col-md-6">
-    {{#emblem-preview emblem=emblem as |compiled loading error|}}
-    {{#if loading}}
-      Loading...
-    {{/if}}
+      {{#emblem-preview emblem=emblem as |compiled loading error|}}
 
-    {{#if compiled}}
-    <pre>
-      {{compiled}}
-    </pre>
-    {{/if}}
+        {{#if emblem}}
+          <div {{bind-attr class=":results error:error"}}>
+            <div {{bind-attr class="loading:add-spinner:loaded"}}>
+              Loading...
+            </div>
 
-    {{#if error}}
-    <div class="error">
-      ERROR: {{error}}
+            {{#if compiled}}
+              <pre>
+                {{compiled}}
+              </pre>
+            {{/if}}
+
+            {{#if error}}
+              <div class="error">
+                ERROR: {{error}}
+              </div>
+            {{/if}}
+          </div>
+
+        {{else}}
+          <div class='placeholder'>
+            <h3>A little Ember app to allow a live preview of Emblem code.</h3>
+          </div>
+        {{/if}}
+      {{/emblem-preview}}
     </div>
-    {{/if}}
-    {{/emblem-preview}}
-  </div>
 </div>
 
