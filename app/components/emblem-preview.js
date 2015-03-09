@@ -1,14 +1,9 @@
 import Ember from 'ember';
-import config from '../config/environment';
-
-import ajax from '../utils/ajax';
-
-let apiURL = config.apiURL;
+import Emblem from 'emblem';
 
 export default Ember.Component.extend({
   emblem: null,
   compiled: null,
-  loading: false,
   error: false,
 
   compileEmblem: function(){
@@ -20,12 +15,11 @@ export default Ember.Component.extend({
 
     this.setProperties({
       compiled: null,
-      loading: true,
       error: false
     });
 
-    return ajax(apiURL, {type: 'POST', data: {emblem}}).then(function(result){
-      let compiled = result.compiled;
+    return Ember.RSVP.resolve().then( () => {
+      let compiled = Emblem.compile(emblem);
       compiled.replace(/</g, '&gt;').
                replace(/>/g, '&lt;');
       component.set('compiled', compiled);
@@ -35,8 +29,6 @@ export default Ember.Component.extend({
       } else {
         component.set('error', e.message);
       }
-    }).finally(function(){
-      component.set('loading', false);
     });
   }.observes('emblem')
 });
