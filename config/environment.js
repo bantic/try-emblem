@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'emblem-preview',
     environment: environment,
     baseURL: '/emblem-preview',
-    locationType: 'hash,
+    locationType: 'hash',
 
     EmberENV: {
       FEATURES: {
